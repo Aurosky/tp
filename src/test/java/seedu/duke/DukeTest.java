@@ -26,7 +26,7 @@ class DukeTest {
     }
 
     @Test
-    public void main_displaysWelcomeAtBeginning_True() {
+    public void main_displaysWelcome() {
         // Call the method that uses System.out.println()
         Duke.main(new String[]{});
 
