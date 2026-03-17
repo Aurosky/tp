@@ -8,6 +8,7 @@ import seedu.duke.commands.ChildListCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ElfListCommand;
 import seedu.duke.commands.FindCommand;
+import seedu.duke.commands.NiceCommand;
 import seedu.duke.commands.GiftCommand;
 
 import seedu.duke.data.exception.IllegalValueException;
@@ -36,6 +37,13 @@ public class Parser {
 
         case "action":
             return prepareAction(arguments);
+        //@@author
+
+        //@@author GShubhan
+        case "nice":
+            return new NiceCommand();
+        //@@author
+            
 
         case "gift":
             return prepareGiftAction(arguments);
