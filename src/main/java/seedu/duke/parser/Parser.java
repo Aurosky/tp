@@ -2,7 +2,13 @@
 // se-edu/addressbook-level2/blob/master/src/seedu/addressbook/parser/Parser.java and supervision from the author
 package seedu.duke.parser;
 
-import seedu.duke.commands.*;
+import seedu.duke.commands.ActionCommand;
+import seedu.duke.commands.ChildCommand;
+import seedu.duke.commands.ChildListCommand;
+import seedu.duke.commands.Command;
+import seedu.duke.commands.ElfListCommand;
+import seedu.duke.commands.FindCommand;
+import seedu.duke.commands.GiftCommand;
 
 import seedu.duke.data.exception.IllegalValueException;
 
@@ -14,33 +20,31 @@ public class Parser {
 
         String commandWord = parts[0];
         String arguments = parts.length > 1 ? parts[1] : "";
-
-
+        
         switch (commandWord) {
-            case "child":
-                return prepareAdd(arguments);
+        case "child":
+            return prepareAdd(arguments);
 
-            case "childlist":
-                return new ChildListCommand();
+        case "childlist":
+            return new ChildListCommand();
 
-            case "elflist":
-                return new ElfListCommand();
+        case "elflist":
+            return new ElfListCommand();
 
-            case "find":
-                return new FindCommand(arguments);
+        case "find":
+            return new FindCommand(arguments);
 
-            //@@author GShubhan
-            case "action":
-                return prepareAction(arguments);
-            //@@author
-            case "gift":
-                return prepareGiftAction(arguments);
+        case "action":
+            return prepareAction(arguments);
 
+        case "gift":
+            return prepareGiftAction(arguments);
 
-
-            default:
-                throw new IllegalValueException("Unknown command. Did you mean 'child' or 'childlist'?");
+        default:
+            throw new IllegalValueException(
+                    "Unknown command. Did you mean 'child' or 'childlist'?");
         }
+
     }
 
     private Command prepareAdd(String args) throws IllegalValueException {
@@ -87,7 +91,7 @@ public class Parser {
     }
 
     private GiftCommand prepareGiftAction(String args) throws IllegalValueException {
-        try{
+        try {
             String[] parts=args.trim().split(" ");
             int childIndex= Integer.parseInt(parts[0])-1;
             ArrayList<String> giftNames= new ArrayList<>();
