@@ -10,6 +10,7 @@ import seedu.duke.commands.DeGiftCommand;
 import seedu.duke.commands.DeleteCommand;
 import seedu.duke.commands.DeliverGiftCommand;
 import seedu.duke.commands.EditCommand;
+import seedu.duke.commands.ElfCommand;
 import seedu.duke.commands.ElfListCommand;
 import seedu.duke.commands.FindCommand;
 import seedu.duke.commands.GiftCommand;
@@ -21,6 +22,8 @@ import seedu.duke.commands.ViewCommand;
 import seedu.duke.data.exception.IllegalValueException;
 
 import java.util.ArrayList;
+
+import com.sun.jdi.connect.Connector;
 
 public class Parser {
     public Command parseCommand(String userInput) throws IllegalValueException {
@@ -51,10 +54,14 @@ public class Parser {
 
         case "find":
             return new FindCommand(arguments);
+        
+        case "elf":
+            return new ElfCommand(arguments);
         //@@author
         
         case "action":
             return prepareAction(arguments);
+            
         //@@author
 
         //@@author GShubhan
