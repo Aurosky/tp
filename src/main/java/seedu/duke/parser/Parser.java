@@ -24,8 +24,6 @@ import seedu.duke.data.exception.IllegalValueException;
 
 import java.util.ArrayList;
 
-import com.sun.jdi.connect.Connector;
-
 public class Parser {
     public Command parseCommand(String userInput) throws IllegalValueException {
         String[] parts = userInput.trim().split(" ", 2);
@@ -57,7 +55,7 @@ public class Parser {
             return new FindCommand(arguments);
         
         case "elf":
-            return PrepareElf(arguments);
+            return prepareElf(arguments);
         
         case "task":
             return prepareTaskAction(arguments);
@@ -237,7 +235,7 @@ public class Parser {
     }
     
     // @@author Kiri
-    private Command PrepareElf(String args) throws IllegalValueException {
+    private Command prepareElf(String args) throws IllegalValueException {
         String name = null;
         
         String[] tokens = args.split(" ");
@@ -267,7 +265,8 @@ public class Parser {
             
             String indexPart = trimmedArgs.substring(0, tIndex).trim();
             if (indexPart.isEmpty()) {
-                throw new IllegalValueException("Please provide an Elf index. Format: task ELF_INDEX t/TASK_DESCRIPTION");
+                throw new IllegalValueException("Please provide an Elf index." +
+                        " Format: task ELF_INDEX t/TASK_DESCRIPTION");
             }
             
             int elfIndex = Integer.parseInt(indexPart);

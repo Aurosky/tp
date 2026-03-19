@@ -9,9 +9,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ElfCommand extends Command {
-    private static final Logger logger = Logger.getLogger(ElfCommand.class.getName());
     
     public static final String MESSAGE_SUCCESS = "Ho ho ho! New elf added: %1$s";
+    
+    private static final Logger logger = Logger.getLogger(ElfCommand.class.getName());
+    
     private final Elf toAdd;
     
     public ElfCommand(String name) throws IllegalValueException {
@@ -23,7 +25,6 @@ public class ElfCommand extends Command {
     
     @Override
     public String execute() {
- 
         assert elfList != null : "elfList must be initialized before executing ElfCommand";
         assert toAdd != null : "toAdd should not be null when executing add operation";
         
