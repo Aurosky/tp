@@ -1,7 +1,7 @@
 //@@author Kiri
 package seedu.duke.data.elf;
 import seedu.duke.data.child.Name;
-// reuse child
+// reuse child class code
 
 public class Elf implements ReadOnlyElf {
     private Name name;
