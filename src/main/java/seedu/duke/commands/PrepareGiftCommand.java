@@ -1,3 +1,4 @@
+//@@author prerana-r11
 package seedu.duke.commands;
 
 import seedu.duke.data.child.Child;
@@ -25,3 +26,4 @@ public class PrepareGiftCommand extends Command{
         return "Gift marked as prepared!!!" + gift;
     }
 }
+//@@author
