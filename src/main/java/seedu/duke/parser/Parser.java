@@ -236,22 +236,39 @@ public class Parser {
     
     // @@author Kiri
     private Command prepareFind(String args) throws IllegalValueException {
-        String name = null;
-        String[] tokens = args.split(" ");
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new IllegalValueException("Format: find n/NAME or find a/AGE or find l/LOCATION");
+        }
         
-        for (String token : tokens) {
-            if (token.startsWith("n/")) {
-                name = token.substring(2).trim();
-                break;
+        String query = null;
+        FindCommand.SearchType searchType = null;
+        
+        if (trimmedArgs.startsWith("n/")) {
+            query = trimmedArgs.substring(2).trim();
+            searchType = FindCommand.SearchType.NAME;
+        } else if (trimmedArgs.startsWith("a/")) {
+            query = trimmedArgs.substring(2).trim();
+            searchType = FindCommand.SearchType.AGE;
+            
+            try {
+                Integer.parseInt(query);
+            } catch (NumberFormatException e) {
+                throw new IllegalValueException("Age must be a valid integer!");
             }
+        } else if (trimmedArgs.startsWith("l/")) {
+            query = trimmedArgs.substring(2).trim();
+            searchType = FindCommand.SearchType.LOCATION;
         }
         
-        if (name == null || name.isEmpty()) {
-            throw new IllegalValueException("Format: find n/NAME");
+        if (searchType == null || query == null || query.isEmpty()) {
+            throw new IllegalValueException("Invalid find format! \n" +
+                    "Usage: find n/NAME or find a/AGE or find l/LOCATION");
         }
         
-        return new FindCommand(name);
+        return new FindCommand(query, searchType);
     }
+    
     
     private Command prepareElf(String args) throws IllegalValueException {
         String name = null;
