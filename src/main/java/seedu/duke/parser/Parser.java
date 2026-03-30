@@ -2,24 +2,7 @@
 // se-edu/addressbook-level2/blob/master/src/seedu/addressbook/parser/Parser.java and supervision from the author
 package seedu.duke.parser;
 
-import seedu.duke.commands.ActionCommand;
-import seedu.duke.commands.ChildCommand;
-import seedu.duke.commands.ChildListCommand;
-import seedu.duke.commands.Command;
-import seedu.duke.commands.DeGiftCommand;
-import seedu.duke.commands.DeleteCommand;
-import seedu.duke.commands.DeliverGiftCommand;
-import seedu.duke.commands.EditCommand;
-import seedu.duke.commands.ElfCommand;
-import seedu.duke.commands.ElfListCommand;
-import seedu.duke.commands.FindCommand;
-import seedu.duke.commands.GiftCommand;
-import seedu.duke.commands.GiftListCommand;
-import seedu.duke.commands.NaughtyCommand;
-import seedu.duke.commands.NiceCommand;
-import seedu.duke.commands.ReassignCommand;
-import seedu.duke.commands.TaskCommand;
-import seedu.duke.commands.ViewCommand;
+import seedu.duke.commands.*;
 import seedu.duke.data.exception.IllegalValueException;
 
 import java.util.ArrayList;
@@ -59,6 +42,9 @@ public class Parser {
         
         case "task":
             return prepareTaskAction(arguments);
+            
+        case "detask":
+            return prepareDetask(arguments);
         //@@author
         
         case "action":
@@ -319,6 +305,36 @@ public class Parser {
             throw new IllegalValueException("Format: task ELF_INDEX t/TASK_DESCRIPTION");
         }
     }
+    
+    private Command prepareDetask(String args) throws IllegalValueException {
+        try {
+            String trimmedArgs = args.trim();
+            
+            int ePos = trimmedArgs.indexOf("e/");
+            int tPos = trimmedArgs.indexOf("t/");
+            
+            if (ePos == -1 || tPos == -1) {
+                throw new IllegalValueException("Format: detask e/ELF_INDEX t/TASK_INDEX");
+            }
+            
+            String elfPart = (ePos < tPos)
+                    ? trimmedArgs.substring(ePos + 2, tPos).trim()
+                    : trimmedArgs.substring(ePos + 2).trim();
+            
+            String taskPart = (tPos < ePos)
+                    ? trimmedArgs.substring(tPos + 2, ePos).trim()
+                    : trimmedArgs.substring(tPos + 2).trim();
+            
+            int elfIndex = Integer.parseInt(elfPart);
+            int taskIndex = Integer.parseInt(taskPart);
+            
+            return new DetaskCommand(elfIndex, taskIndex);
+            
+        } catch (NumberFormatException e) {
+            throw new IllegalValueException("Indexes must be valid integers.");
+        } catch (Exception e) {
+            throw new IllegalValueException("Correct format: detask e/ELF_INDEX t/TASK_INDEX");
+        }
+    }
     // @@author
 }
-
