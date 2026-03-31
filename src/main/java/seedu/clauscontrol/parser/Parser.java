@@ -157,27 +157,25 @@ public class Parser {
         String name = null;
         String location = null;
         String ageString = null;
-        int age = 0;
+        int age = -1;
 
         String[] tokens = args.split(" (?=[nla]/)");
 
         for (String token : tokens) {
             if (token.startsWith("n/")) {
                 name = token.substring(2);
-            }
-            if (token.startsWith("l/")) {
+            } else if (token.startsWith("l/")) {
                 location = token.substring(2);
-            }
-            if (token.startsWith("a/")) {
+            } else if (token.startsWith("a/")) {
                 ageString = token.substring(2);
             }
         }
 
         checkValidity(name);
-        checkValidity(location);
-        checkValidity(ageString);
 
-        age = Integer.parseInt(ageString);
+        if (ageString != null) {
+            age = Integer.parseInt(ageString);
+        }
         
         return new ChildCommand(name, location, age);
     }
@@ -211,9 +209,11 @@ public class Parser {
     private Command prepareEdit(String args) throws IllegalValueException {
         try {
             int nIndex = args.indexOf("n/");
+            int lIndex = args.indexOf("l/");
+            int aIndex = args.indexOf("a/");
 
             if (nIndex == -1) {
-                throw new IllegalValueException("Format: edit CHILD_INDEX n/NAME");
+                throw new IllegalValueException("Format: edit CHILD_INDEX n/NAME [l/LOCATION] [a/AGE]");
             }
 
             int index = Integer.parseInt(args.trim().split(" ")[0]) - 1;
