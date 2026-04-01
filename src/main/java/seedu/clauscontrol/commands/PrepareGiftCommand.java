@@ -16,12 +16,12 @@ public class PrepareGiftCommand extends Command{
     @Override
     public String execute() {
         if (childIndex < 1 || childIndex > childList.size()) {
-            return "Please enter valid child index";
+            return "Invalid child index";
         }
         Child child = childList.get(childIndex - 1);
 
         if (giftIndex < 1 || giftIndex > child.getGifts().size()) {
-            return "Please enter valid gift index";
+            return "Invalid gift index";
         }
         Gift gift = child.getGifts().get(giftIndex - 1);
 

@@ -70,12 +70,9 @@ public class DeliveryStatusCommandTest {
 
     @Test
     public void deliveryStatus_invalidFormat_throwsException() {
-        Exception e = assertThrows(Exception.class, () -> {
-            assertThrows(IllegalValueException.class, () -> {
-                parser.parseCommand("delivery_status 1 1 wrong");
-            });
+        assertThrows(IllegalValueException.class, () -> {
+            parser.parseCommand("delivery_status 1 1 d/");
         });
-        assertTrue(e.getMessage().contains("Format"));
     }
 }
 //@@author

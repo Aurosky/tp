@@ -25,6 +25,9 @@ public class GiftCommand extends Command{
             return "Please enter valid child index";
         }
         Child child= childList.get(childIndex-1);
+        if (giftNames == null || giftNames.isEmpty()) {
+            return "Please enter a gift name";
+        }
         for(String name :giftNames){
             if(name==null || name.trim().isEmpty()){
                 return "Please enter a gift name";
@@ -32,7 +35,7 @@ public class GiftCommand extends Command{
             Gift gift=new Gift(name);
             child.addGift(gift);
         }
-        return "Added gifts to child " + (childIndex+1) + ": " + giftNames;
+        return "Added gifts to child " + (childIndex) + ": " + giftNames;
     }
 }
 //@@author
