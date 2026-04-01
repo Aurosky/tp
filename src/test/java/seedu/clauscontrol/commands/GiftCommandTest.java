@@ -2,7 +2,7 @@
 
 package seedu.clauscontrol.commands;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.clauscontrol.data.child.Child;
 import seedu.clauscontrol.data.child.Name;
@@ -11,15 +11,17 @@ import seedu.clauscontrol.parser.Parser;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 public class GiftCommandTest {
     private static Parser parser;
     private static ArrayList<Child> childList;
 
-    @BeforeAll
-    public static void setup() throws IllegalValueException {
+    @BeforeEach
+    public void setup() throws IllegalValueException {
         parser = new Parser(new ArrayList<>());
         childList = new ArrayList<>();
         childList.add(new Child(new Name("John Doe")));
@@ -42,7 +44,7 @@ public class GiftCommandTest {
         Command command = parser.parseCommand(input);
         command.setData(childList, null, false);
         String result = command.execute();
-        assertEquals("Please finalise the lists before assigning gifts", result);
+        assertEquals("Please finalise the lists before allocating gifts!", result);
     }
     //invalid child index
     @Test

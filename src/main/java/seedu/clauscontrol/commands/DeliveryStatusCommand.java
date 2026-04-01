@@ -16,7 +16,7 @@ public class DeliveryStatusCommand extends Command{
 
     @Override
     public String execute() {
-        if (childIndex < 1 || childIndex > childList.size()) {
+        if (childIndex < 0 || childIndex >= childList.size()) {
             return "Please enter valid index value";
         }
         Child child = childList.get(childIndex - 1);
@@ -28,7 +28,10 @@ public class DeliveryStatusCommand extends Command{
         Gift gift = child.getGifts().get(giftIndex - 1);
 
         if (delivered && gift.isDelivered()) {
-            return "Gift is already delivered, try another command!";
+            return "Gift is already delivered!";
+        }
+        if (!delivered && !gift.isDelivered()) {
+            return "Gift is already undelivered!";
         }
         if (delivered) {
             gift.markDelivered();

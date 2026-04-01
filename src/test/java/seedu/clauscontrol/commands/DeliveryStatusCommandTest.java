@@ -1,7 +1,7 @@
 //@@author prerana-r11
 package seedu.clauscontrol.commands;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.clauscontrol.data.child.Child;
 import seedu.clauscontrol.data.child.Name;
@@ -17,8 +17,8 @@ public class DeliveryStatusCommandTest {
     private static Parser parser;
     private static ArrayList<Child> childList;
 
-    @BeforeAll
-    public static void setup() throws IllegalValueException {
+    @BeforeEach
+    public void setup() throws IllegalValueException {
         parser = new Parser(new ArrayList<>());
         childList = new ArrayList<>();
         Child child = new Child(new Name("John Doe"));
