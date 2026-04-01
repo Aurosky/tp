@@ -21,7 +21,7 @@ public class GiftCommand extends Command{
             return "Please finalise the lists before allocating gifts!";
         }
         //@@author
-        if(childIndex<1 || childIndex>childList.size()){
+        if(childIndex<0 || childIndex >= childList.size()){
             return "Please enter valid child index";
         }
         Child child= childList.get(childIndex-1);
@@ -35,7 +35,7 @@ public class GiftCommand extends Command{
             Gift gift=new Gift(name);
             child.addGift(gift);
         }
-        return "Added gifts to child " + (childIndex) + ": " + giftNames;
+        return "Added gifts to child " + (childIndex+1) + ": " + giftNames;
     }
 }
 //@@author
