@@ -47,7 +47,9 @@ public class ClausControl {
     private TodoStorage todoStorage = new TodoStorage("todos.txt");
 
     //@@author
-
+    public ClausControl() {
+        this(System.in);
+    }
     //@@author prerana-r11
     public ClausControl(InputStream inputStream) {
         this.ui = new TextUi(inputStream);
@@ -102,9 +104,8 @@ public class ClausControl {
                     logger.warning("Error saving todos: " + e.getMessage());
                 }
 
-                System.out.println(result); //TODO: ui formatting required
+                System.out.println(result);
                 //@@author
-                executeCommand(command);
             } catch (IllegalValueException e) {
                 System.out.println(e.getMessage());
                 logger.log(Level.INFO, "processing error");
@@ -113,21 +114,6 @@ public class ClausControl {
             }
         } while (true);
     }
-
-    //@@author GShubhan
-    private void executeCommand(Command command) {
-        String result = command.execute();
-        try {
-            storage.save(childList);
-        } catch (IOException e) {
-            logger.warning("Error saving: " + e.getMessage());
-        }
-        if (command instanceof FinalizeCommand) {
-            isFinalized = true;
-        }
-        System.out.println(result);
-    }
-    //@@author
 
     /**
      * Displays application logo and starts command loop.
