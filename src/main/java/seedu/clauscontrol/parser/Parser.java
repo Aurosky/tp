@@ -24,15 +24,17 @@ import seedu.clauscontrol.commands.RmElfCommand;
 import seedu.clauscontrol.commands.TaskCommand;
 import seedu.clauscontrol.commands.ViewCommand;
 import seedu.clauscontrol.commands.DeleteCommand;
-
 import seedu.clauscontrol.data.exception.IllegalValueException;
-
 import java.util.ArrayList;
 
 
+/**
+ * Parses user input.
+ */
 public class Parser {
     private static Command pendingCommand = null;
     public Command parseCommand(String userInput) throws IllegalValueException {
+
         //@@author Aurosky
         String trimmedInput = userInput.trim();
         if (trimmedInput.equalsIgnoreCase("confirm")) {
@@ -47,13 +49,13 @@ public class Parser {
         //@@author
 
         //@@author shrabasti-c-reused
-        // ChatGPT was used to generate the below boilerplate with reference from https://github.com/
-        // se-edu/addressbook-level2/blob/master/src/seedu/addressbook/parser/Parser.java and supervision from the
-        // author
+        // Reused from ChatGPT 
         String[] parts = userInput.trim().split(" ", 2);
         String commandWord = parts[0];
         String arguments = parts.length > 1 ? parts[1] : "";
+        //@@author
 
+        //@@author shrabasti-c
         switch (commandWord) {
         case "child":
             return prepareAdd(arguments);
@@ -139,7 +141,15 @@ public class Parser {
     }
 
     //@@author shrabasti-c-reused
-    // Reused from ChatGPT under supervision from the author, with significant modifications
+    // Reused from ChatGPT with significant modifications
+    /**
+     * Returns an Add command from user input arguments.
+     * Extracts name, location, and age from the input string.
+     *
+     * @param args the input arguments
+     * @return a {@link ChildCommand} initialized with the extracted parameters
+     * @throws IllegalValueException if input format is invalid, contains duplicates, or invalid values
+     */
     private Command prepareAdd(String args) throws IllegalValueException {
         String name = null;
         String location = null;
@@ -167,6 +177,20 @@ public class Parser {
 
         checkValidity(name);
 
+        age = assignAge(ageString, age);
+
+        return new ChildCommand(name, location, age);
+    }
+
+    /**
+     * Converts the age string to an integer and validates it.
+     *
+     * @param ageString the string representation of age
+     * @param age the default age value
+     * @return the validated age as an integer
+     * @throws IllegalValueException if ageString is not a valid non-negative integer
+     */
+    private int assignAge(String ageString, int age) throws IllegalValueException {
         if (ageString != null) {
             try{
                 age = Integer.parseInt(ageString);
@@ -177,10 +201,15 @@ public class Parser {
                 throw new IllegalValueException("Oops! Age must be a valid number within range");
             }
         }
-        
-        return new ChildCommand(name, location, age);
+        return age;
     }
 
+    /**
+     * Checks whether a parameter has already been provided to prevent duplicates.
+     *
+     * @param param the parameter value to check
+     * @throws IllegalValueException if the parameter is already set
+     */
     private static void checkDuplicateParams(String param) throws IllegalValueException {
         if (param != null) {
             throw new IllegalValueException("You have entered duplicate parameters! Please follow" +
@@ -188,41 +217,31 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks whether a required token is valid.
+     *
+     * @param token the string to validate
+     * @throws IllegalValueException if the token is null or empty
+     */
     private static void checkValidity(String token) throws IllegalValueException {
         if (token == null || token.isEmpty()) {
             throw new IllegalValueException("Please follow the format: child n/NAME [l/LOCATION] [a/AGE]");
         }
     }
-    //@@author
 
-    //@@author shrabasti-c
-    private Command prepareView(String args) throws IllegalValueException {
-        try {
-            int childIndex= Integer.parseInt(args.trim()) - 1;
-            return new ViewCommand(childIndex);
-        } catch (NumberFormatException e) {
-            throw new IllegalValueException("Please use valid command format : view [childindex]");
-        }
-    }
-
-    private Command prepareDelete(String args) throws IllegalValueException {
-        try {
-            int childIndex= Integer.parseInt(args.trim()) - 1;
-            return new DeleteCommand(childIndex);
-        } catch (NumberFormatException e) {
-            throw new IllegalValueException("Please use valid command format : delete [childindex]");
-        }
-    }
-    //@@author
-
-
-    //@@author shrabasti-c-reused
-    // Reused from ChatGPT under supervision from the author
+    /**
+     * Prepares an Edit command from user input arguments.
+     * Parses the index of the child to edit and the new values for name, location, and age.
+     *
+     * @param args the input arguments
+     * @return an {@link EditCommand} initialized with the parsed index and new values
+     * @throws IllegalValueException if input format is invalid, index is missing, or values are invalid
+     */
     private Command prepareEdit(String args) throws IllegalValueException {
         String newName = null;
         String newLocation = null;
         String ageString = null;
-        Integer newAge = null;
+        int newAge = -1;
         int index;
 
         String[] parts = args.trim().split(" ", 2);
@@ -246,21 +265,48 @@ public class Parser {
                 newLocation = token.substring(2).trim();
             } else if (token.startsWith("a/")) {
                 ageString = token.substring(2).trim();
-                if (!ageString.isEmpty()) {
-                    try {
-                        newAge = Integer.parseInt(ageString);
-                    } catch (NumberFormatException e) {
-                        throw new IllegalValueException("Age must be a number");
-                    }
-                }
             }
         }
 
-        if (newName == null && newLocation == null && newAge == null) {
-            throw new IllegalValueException("Nothing to edit! Provide n/, l/ or a/");
-        }
+        newAge = assignAge(ageString, newAge);
 
         return new EditCommand(index, newName, newLocation, newAge);
+    }
+    //@@author
+
+    //@@author shrabasti-c
+    /**
+     * Prepares a View command from user input arguments.
+     * Parses the index of the child to view.
+     *
+     * @param args the input arguments
+     * @return an {@link EditCommand} initialized with the parsed index
+     * @throws IllegalValueException if input format or index is invalid, or index is missing
+     */
+    private Command prepareView(String args) throws IllegalValueException {
+        try {
+            int childIndex= Integer.parseInt(args.trim()) - 1;
+            return new ViewCommand(childIndex);
+        } catch (NumberFormatException e) {
+            throw new IllegalValueException("Please use valid command format : view [childindex]");
+        }
+    }
+
+    /**
+     * Prepares a Delete command from user input arguments.
+     * Parses the index of the child to view.
+     *
+     * @param args the input arguments
+     * @return an {@link EditCommand} initialized with the parsed index
+     * @throws IllegalValueException if input format or index is invalid, or index is missing
+     */
+    private Command prepareDelete(String args) throws IllegalValueException {
+        try {
+            int childIndex= Integer.parseInt(args.trim()) - 1;
+            return new DeleteCommand(childIndex);
+        } catch (NumberFormatException e) {
+            throw new IllegalValueException("Please use valid command format : delete [childindex]");
+        }
     }
     //@@author
 

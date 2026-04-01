@@ -76,7 +76,7 @@ public class ClausControl {
                 command.setData(childList, elfList, isFinalized);
                 executeCommand(command);
             } catch (IllegalValueException e) {
-                System.out.println(e.getMessage()); //TODO: ui formatting required
+                System.out.println(e.getMessage());
                 logger.log(Level.INFO, "processing error");
             } catch(Exception e){
                 return;
@@ -95,7 +95,7 @@ public class ClausControl {
         if (command instanceof FinalizeCommand) {
             isFinalized = true;
         }
-        System.out.println(result); //TODO: ui formatting required
+        System.out.println(result);
     }
     //@@author
 
