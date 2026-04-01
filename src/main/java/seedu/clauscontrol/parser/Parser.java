@@ -139,22 +139,28 @@ public class Parser {
     }
 
     //@@author shrabasti-c-reused
-    // ChatGPT was used to generate the boilerplate of the prepareAdd function with reference from https://github.com/
-    // se-edu/addressbook-level2/blob/master/src/seedu/addressbook/parser/Parser.java and supervision from the author
+    // Reused from ChatGPT under supervision from the author, with significant modifications
     private Command prepareAdd(String args) throws IllegalValueException {
         String name = null;
         String location = null;
         String ageString = null;
         int age = -1;
 
-        String[] tokens = args.split(" (?=[nla]/)");
+        args = args.trim().replaceAll("\\s+", " ");
+        String[] tokens = args.split("\\s+(?=\\w/)");
 
         for (String token : tokens) {
+            if (!token.matches("[nla]/.*")) {
+                throw new IllegalValueException("Oops! Incorrect prefix");
+            }
             if (token.startsWith("n/")) {
+                checkDuplicateParams(name);
                 name = token.substring(2);
             } else if (token.startsWith("l/")) {
+                checkDuplicateParams(location);
                 location = token.substring(2);
             } else if (token.startsWith("a/")) {
+                checkDuplicateParams(ageString);
                 ageString = token.substring(2);
             }
         }
@@ -162,15 +168,29 @@ public class Parser {
         checkValidity(name);
 
         if (ageString != null) {
-            age = Integer.parseInt(ageString);
+            try{
+                age = Integer.parseInt(ageString);
+                if (age < 0) {
+                    throw new IllegalValueException("Oops! Age must be non-negative");
+                }
+            } catch (NumberFormatException e) {
+                throw new IllegalValueException("Oops! Age must be a valid number within range");
+            }
         }
         
         return new ChildCommand(name, location, age);
     }
 
-    private static void checkValidity(String ageString) throws IllegalValueException {
-        if (ageString == null || ageString.isEmpty()) {
-            throw new IllegalValueException("Format: age a/AGE");
+    private static void checkDuplicateParams(String param) throws IllegalValueException {
+        if (param != null) {
+            throw new IllegalValueException("You have entered duplicate parameters! Please follow" +
+                    "child n/NAME [l/LOCATION] [a/AGE]");
+        }
+    }
+
+    private static void checkValidity(String token) throws IllegalValueException {
+        if (token == null || token.isEmpty()) {
+            throw new IllegalValueException("Please follow the format: child n/NAME [l/LOCATION] [a/AGE]");
         }
     }
     //@@author
@@ -215,9 +235,7 @@ public class Parser {
         if (parts.length < 2) {
             throw new IllegalValueException("Nothing to edit! Provide n/, l/ or a/");
         }
-
         String remaining = parts[1];
-
 
         String[] tokens = remaining.split("\\s+(?=[nla]/)");
 

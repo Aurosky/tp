@@ -24,6 +24,10 @@ public class ChildCommand extends Command {
         assert toAdd != null : "Child should not be null";
     }
 
+    public Child getChild() {
+        return toAdd;
+    }
+
     @Override
     public String execute() {
         childList.add(toAdd);
