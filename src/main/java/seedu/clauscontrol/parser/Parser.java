@@ -85,6 +85,7 @@ public class Parser {
 
         case "edittodo":
             return prepareEditTodo(arguments);
+
         //@@author
 
         //@@author Aurosky
@@ -275,6 +276,9 @@ public class Parser {
         String ageString = null;
         int newAge = -1;
         int index;
+        boolean nameSet = false;
+        boolean locationSet = false;
+        boolean ageSet = false;
 
         String[] parts = args.trim().split(" ", 2);
         try {
@@ -292,11 +296,26 @@ public class Parser {
 
         for (String token : tokens) {
             if (token.startsWith("n/")) {
+                if (nameSet) {
+                    throw new IllegalValueException("You have entered duplicate parameters! Please follow " +
+                            "edit INDEX [n/NAME] [l/LOCATION] [a/AGE]");
+                }
                 newName = token.substring(2).trim();
+                nameSet = true;
             } else if (token.startsWith("l/")) {
+                if (locationSet) {
+                    throw new IllegalValueException("You have entered duplicate parameters! Please follow " +
+                            "edit INDEX [n/NAME] [l/LOCATION] [a/AGE]");
+                }
                 newLocation = token.substring(2).trim();
+                locationSet = true;
             } else if (token.startsWith("a/")) {
+                if(ageSet) {
+                    throw new IllegalValueException("You have entered duplicate parameters! Please follow " +
+                            "edit INDEX [n/NAME] [l/LOCATION] [a/AGE]");
+                }
                 ageString = token.substring(2).trim();
+                ageSet = true;
             }
         }
 

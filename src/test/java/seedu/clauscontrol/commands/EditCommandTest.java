@@ -9,10 +9,10 @@ import seedu.clauscontrol.parser.Parser;
 
 import java.util.ArrayList;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 //@@author shrabasti-c
 /* Inspired by AddCommandTest Class of AB2 application
@@ -64,5 +64,46 @@ public class EditCommandTest {
         assertEquals("Bruce Banner", child.getName().toString());
         assertNull(child.getLocation());
         assertEquals(20, child.getAge());
+    }
+
+    @Test
+    public void editCommand_negativeAge_throwsException() throws Exception {
+        String input = "edit 1 a/-20";
+        IllegalValueException thrown = assertThrows(IllegalValueException.class, () -> {
+            parser.parseCommand(input);
+        });
+        assertEquals("Oops! Age must be non-negative",
+                thrown.getMessage());
+    }
+
+    @Test
+    public void editCommand_ageOverflow_throwsException() throws Exception {
+        String input = "edit 1 a/99999999999999999999999";
+        IllegalValueException thrown = assertThrows(IllegalValueException.class, () -> {
+            parser.parseCommand(input);
+        });
+        assertEquals("Oops! Age must be a valid number within range",
+                thrown.getMessage());
+    }
+
+    @Test
+    public void editCommand_duplicateParams_throwsException() throws Exception {
+        String input = "edit 1 a/9 a/10";
+        IllegalValueException thrown = assertThrows(IllegalValueException.class, () -> {
+            parser.parseCommand(input);
+        });
+        assertEquals("You have entered duplicate parameters! " +
+                        "Please follow edit INDEX [n/NAME] [l/LOCATION] [a/AGE]",
+                thrown.getMessage());
+    }
+
+    @Test
+    public void editCommand_noIndex_throwsException() throws Exception {
+        String input = "edit a/10";
+        IllegalValueException thrown = assertThrows(IllegalValueException.class, () -> {
+            parser.parseCommand(input);
+        });
+        assertEquals("First argument must be the child index",
+                thrown.getMessage());
     }
 }
