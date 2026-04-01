@@ -31,14 +31,15 @@ public class ViewCommand extends Command{
     @Override
     public String execute() {
         if (childIndex < 0 || childIndex >= childList.size()) {
-            return "Invalid position :(";
+            return "Invalid index position :(";
         }
 
         Child child = childList.get(childIndex);
-        int age = child.getAge();
-        String ageMessage = (age == -1)? "Not Provided": String.valueOf(age);
-        String location = child.getLocation();
-        String locationMessage = (location == null )? "Not Provided": location;
+        
+        String ageMessage = getAgeMessage(child);
+
+        String locationMessage = getLocationMessage(child);
+
         StringBuilder sb= new StringBuilder("Name: " + child.getName() + " \n");
         sb.append("Age: ").append(ageMessage).append("\n");
         sb.append("Location: ").append(locationMessage).append("\n");
@@ -48,8 +49,29 @@ public class ViewCommand extends Command{
             sb.append("Gifts: \n");
             createList(gifts, sb);
         }
-        sb.append("Current Status: ").append((child.getTotalScore() >= 0) ? "Nice" : "Naughty").append(" \n");
+
+        String listAssignment = getListAssignment(child);
+
+        sb.append("List Assignment: ").append(listAssignment);
         return sb.toString();
+    }
+
+    private String getListAssignment(Child child) {
+        String listAssignment = "Yet to be evaluated/assigned.";
+        if (child.getListAssignment() != null) {
+            listAssignment = child.getListAssignment();
+        }
+        return listAssignment;
+    }
+
+    private String getLocationMessage(Child child) {
+        String location = child.getLocation();
+        return (location == null )? "Not Provided": location;
+    }
+
+    private String getAgeMessage(Child child) {
+        int age = child.getAge();
+        return (age == -1)? "Not Provided": String.valueOf(age);
     }
 
     /**

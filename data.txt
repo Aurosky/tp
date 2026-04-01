@@ -1,5 +1,3 @@
-CHILD|Robert
 CHILD|Bruce
 CHILD|Peter Parker
 CHILD|Nick Jonas
-CHILD|doe

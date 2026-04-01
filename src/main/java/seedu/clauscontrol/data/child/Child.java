@@ -83,6 +83,19 @@ public class Child implements ReadOnlyChild{
     public String toString() {
         return name.toString();
     }
+
+    public String getListAssignment() {
+        return listAssignment;
+    }
+
+    public ArrayList<String> getActions() {
+        return actions;
+    }
+
+    public ArrayList<Integer> getSeverities() {
+        return severities;
+    }
+
     //@@author
 
     //@@author GShubhan
