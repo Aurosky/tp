@@ -28,6 +28,8 @@ import seedu.clauscontrol.commands.AddTodoCommand;
 import seedu.clauscontrol.commands.TodoListCommand;
 import seedu.clauscontrol.commands.EditTodoCommand;
 import seedu.clauscontrol.data.todo.Todo;
+import seedu.clauscontrol.commands.RemoveTodoCommand;
+
 
 import seedu.clauscontrol.data.exception.IllegalValueException;
 
@@ -142,6 +144,12 @@ public class Parser {
 
         case "todolist":
             return new TodoListCommand(todoList);
+        case "removetodo":
+            try {
+                return new RemoveTodoCommand(Integer.parseInt(arguments.trim()), todoList);
+            } catch (NumberFormatException e) {
+                throw new IllegalValueException("Index must be a number! Format: removetodo INDEX");
+            }
 
         //@@author
 

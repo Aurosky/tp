@@ -6,6 +6,7 @@ import seedu.clauscontrol.data.elf.Elf;
 import seedu.clauscontrol.data.exception.IllegalValueException;
 import seedu.clauscontrol.data.todo.Todo;
 import seedu.clauscontrol.parser.Parser;
+import seedu.clauscontrol.storage.TodoStorage;
 import seedu.clauscontrol.ui.TextUi;
 import seedu.clauscontrol.storage.Storage;
 import java.io.IOException;
@@ -43,23 +44,31 @@ public class ClausControl {
     //@@author GShubhan
     private boolean isFinalized = false;
     private ArrayList<Todo> todoList = new ArrayList<>();
-    //@@author
+    private TodoStorage todoStorage = new TodoStorage("todos.txt");
 
+    //@@author
     public ClausControl() {
         this(System.in);
     }
-
     //@@author prerana-r11
     public ClausControl(InputStream inputStream) {
         this.ui = new TextUi(inputStream);
-        this.parser = new Parser(todoList);
         this.elfList = new ArrayList<>();
         try {
             this.childList = new ArrayList<>(storage.load());
         } catch (IOException e) {
             this.childList = new ArrayList<>();
         }
+        //@@author
+        //@@author GShubhan
+        try {
+            this.todoList = new ArrayList<>(todoStorage.load());
+        } catch (IOException e) {
+            this.todoList = new ArrayList<>();
+        }
+        this.parser = new Parser(todoList);  // initialize AFTER loading todos
     }
+    //@@author
     //@@author
 
     /**
@@ -79,7 +88,24 @@ public class ClausControl {
                 }
                 command = parser.parseCommand(userCommandText);
                 command.setData(childList, elfList, isFinalized);
-                executeCommand(command);
+                //@@author GShubhan
+                String result = command.execute();
+                try {
+                    storage.save(childList);
+                } catch (IOException e) {
+                    logger.warning("Error saving: " + e.getMessage());
+                }
+                if (command instanceof FinalizeCommand) {
+                    isFinalized = true;
+                }
+                try {
+                    todoStorage.save(todoList);
+                } catch (IOException e) {
+                    logger.warning("Error saving todos: " + e.getMessage());
+                }
+
+                System.out.println(result);
+                //@@author
             } catch (IllegalValueException e) {
                 System.out.println(e.getMessage());
                 logger.log(Level.INFO, "processing error");
@@ -89,21 +115,6 @@ public class ClausControl {
         } while (true);
     }
 
-    //@@author GShubhan
-    private void executeCommand(Command command) {
-        String result = command.execute();
-        try {
-            storage.save(childList);
-        } catch (IOException e) {
-            logger.warning("Error saving: " + e.getMessage());
-        }
-        if (command instanceof FinalizeCommand) {
-            isFinalized = true;
-        }
-        System.out.println(result);
-    }
-    //@@author
-
     /**
      * Displays application logo and starts command loop.
      *
@@ -111,9 +122,25 @@ public class ClausControl {
      */
     public void run() throws IllegalValueException {
         System.out.println(LOGO);
+        showUpcomingTodos();
         runCommandLoopUntilExitCommand();
     }
-
+    //@@author GShubhan
+    private void showUpcomingTodos() {
+        StringBuilder sb = new StringBuilder();
+        for (Todo todo : todoList) {
+            if (todo.isUpcoming()) {
+                sb.append("- ").append(todo.getDescription())
+                        .append(" (due: ").append(todo.getDeadline()).append(")\n");
+            }
+        }
+        if (sb.length() > 0) {
+            System.out.println("Upcoming reminders this week:");
+            System.out.println(sb.toString().trim());
+            System.out.println();
+        }
+    }
+    //@@author
     /**
      * Main entry-point for the ClausControl application.
      *
