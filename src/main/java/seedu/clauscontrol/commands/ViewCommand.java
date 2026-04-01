@@ -19,7 +19,13 @@ public class ViewCommand extends Command{
         }
 
         Child child = childList.get(childIndex);
-        StringBuilder sb= new StringBuilder("Name: " + child.getName()+" \n");
+        int age = child.getAge();
+        String ageMessage = (age == -1)? "Not Provided": String.valueOf(age);
+        String location = child.getLocation();
+        String locationMessage = (location == null )? "Not Provided": location;
+        StringBuilder sb= new StringBuilder("Name: " + child.getName() + " \n");
+        sb.append("Age: ").append(ageMessage).append("\n");
+        sb.append("Location: ").append(locationMessage).append("\n");
 
         ArrayList<Gift> gifts = child.getGifts();
         if (!gifts.isEmpty()) {

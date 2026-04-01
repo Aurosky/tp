@@ -14,6 +14,10 @@ public class ChildCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Ho ho ho! New child added: %1$s";
     private final Child toAdd;
 
+    public Child getChild() {
+        return toAdd;
+    }
+
     /**
      * Convenience constructor using raw values.
      *
