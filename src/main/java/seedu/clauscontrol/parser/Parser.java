@@ -143,9 +143,26 @@ public class Parser {
         case "naughty":
             return new NaughtyCommand();
         case "reassign":
-            int index = Integer.parseInt(arguments.split(" ")[0]);
-            String list = arguments.split(" ")[1].substring(2);
-            return new ReassignCommand(index, list);
+            try {
+                if (arguments.trim().isEmpty()) {
+                    throw new IllegalValueException("Format: reassign CHILD_INDEX l/LIST");
+                }
+                String[] reassignParts = arguments.split(" ");
+                if (reassignParts.length < 2) {
+                    throw new IllegalValueException("Format: reassign CHILD_INDEX l/LIST");
+                }
+                if (!reassignParts[1].startsWith("l/")) {
+                    throw new IllegalValueException("Format: reassign CHILD_INDEX l/LIST");
+                }
+                int reassignIndex = Integer.parseInt(reassignParts[0]);
+                String reassignList = reassignParts[1].substring(2);
+                if (reassignList.isEmpty()) {
+                    throw new IllegalValueException("List cannot be empty! Use nice or naughty");
+                }
+                return new ReassignCommand(reassignIndex, reassignList);
+            } catch (NumberFormatException e) {
+                throw new IllegalValueException("Child index must be a number!");
+            }
         case "todo":
             return new AddTodoCommand(arguments, todoList);
 

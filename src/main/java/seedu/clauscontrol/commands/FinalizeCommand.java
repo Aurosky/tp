@@ -8,7 +8,11 @@ public class FinalizeCommand extends Command {
 
     @Override
     public String execute() {
-        return "Lists have been finalised! No more actions can be added. You can now allocate gifts!";
+        try {
+            return "Lists have been finalised! No more actions can be added. You can now allocate gifts!";
+        } catch (Exception e) {
+            return "Something went wrong finalising the lists!";
+        }
     }
 }
 //@@author

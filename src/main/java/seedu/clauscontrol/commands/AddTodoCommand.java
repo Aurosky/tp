@@ -24,6 +24,10 @@ public class AddTodoCommand extends Command {
     @Override
     public String execute() {
         try {
+            if (arguments == null || arguments.trim().isEmpty()) {
+                return "Format: todo d/DESCRIPTION by/YYYY-MM-DD";
+            }
+
             int dIndex = arguments.indexOf("d/");
             int byIndex = arguments.indexOf("by/");
 
@@ -31,13 +35,28 @@ public class AddTodoCommand extends Command {
                 return "Format: todo d/DESCRIPTION by/YYYY-MM-DD";
             }
 
+            if (dIndex >= byIndex) {
+                return "Format: todo d/DESCRIPTION by/YYYY-MM-DD";
+            }
+
             String description = arguments.substring(dIndex + 2, byIndex).trim();
             String dateStr = arguments.substring(byIndex + 3).trim();
-            LocalDate deadline = LocalDate.parse(dateStr);
 
             if (description.isEmpty()) {
                 return "Description cannot be empty!";
             }
+
+            if (dateStr.isEmpty()) {
+                return "Deadline cannot be empty! Please use YYYY-MM-DD";
+            }
+
+            // reject non-ASCII or unusual characters in description
+            if (!description.matches("[\\x20-\\x7E]+")) {
+                return "Description contains invalid characters!";
+            }
+
+            LocalDate deadline = LocalDate.parse(dateStr);
+
             if (deadline.isBefore(LocalDate.now())) {
                 return "Deadline cannot be in the past!";
             }
@@ -45,9 +64,13 @@ public class AddTodoCommand extends Command {
             todoList.add(new Todo(description, deadline));
             logger.log(Level.INFO, "Todo added: " + description);
             return "Todo added: " + description + " (due: " + deadline + ")";
+
         } catch (DateTimeParseException e) {
-            logger.log(Level.WARNING, "Invalid date format entered");
+            logger.log(Level.INFO, "Invalid date format entered");
             return "Invalid date format! Please use YYYY-MM-DD e.g. 2026-04-05";
+        } catch (Exception e) {
+            logger.log(Level.INFO, "Unexpected error in AddTodoCommand");
+            return "Something went wrong! Format: todo d/DESCRIPTION by/YYYY-MM-DD";
         }
     }
 }
