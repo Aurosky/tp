@@ -12,11 +12,11 @@ import java.util.logging.Logger;
  * Edits a task in the todolist.
  */
 public class EditTodoCommand extends Command {
+    private static final Logger logger = Logger.getLogger("Foo");
     private final ArrayList<Todo> todoList;
     private final int index;
     private final String newDescription;
     private final LocalDate newDeadline;
-    private static final Logger logger = Logger.getLogger("Foo");
 
     public EditTodoCommand(ArrayList<Todo> todoList, int index, String newDescription, LocalDate newDeadline) {
         this.todoList = todoList;
