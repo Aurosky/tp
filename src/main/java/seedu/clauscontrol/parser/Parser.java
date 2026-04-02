@@ -523,7 +523,8 @@ public class Parser {
             delivered=false;
         } else{
             throw new IllegalValueException("Please use valid command format:"
-                    + "delivery_status CHILD_INDEX GIFT_INDEX d/delivered|d/undelivered");
+                    + "delivery_status CHILD_INDEX GIFT_INDEX" +
+                    " d/delivered|d/undelivered");
         }
         return delivered;
     }

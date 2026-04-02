@@ -69,11 +69,11 @@ public class Storage {
 
 
         while ((line = reader.readLine()) != null) {
-            if (line.trim().isEmpty()){
+            if (line.trim().isEmpty()) {
                 continue;
             }
             String[] parts = line.trim().split("\\|");
-            if (parts.length == 0){
+            if (parts.length == 0) {
                 continue;
             }
 
@@ -147,6 +147,8 @@ public class Storage {
                 currentElf.addTask(new ElfTask(parts[1]));
                 break;
             }
+            default:
+                break;
             }
         }
 

@@ -15,12 +15,12 @@ import java.util.ArrayList;
  */
 public class GiftListCommand extends Command{
 
-    @Override
     /**
      * Executes the gift listing operation.
      *
      * @return a formatted string showing all children with their assigned gifts,or a message if no children or gifts exist
      */
+    @Override
     public String execute(){
         if(childList==null || childList.isEmpty()){
             return "No children added";
