@@ -2,7 +2,7 @@
 
 ## Introduction
 
-**ElfManager** is a specialized CLI tool designed for efficient tracking and organization of "Elves" and "Children" data. Built for speed and reliability, it allows users to manage complex personnel assignments and location-based data through a clean command-line interface.
+ClausControl is a **desktop app for Santa Claus to manage children, gifts and elves, optimized for use via a Command Line Interface** (CLI) while still having the benefi ts of a Graphical User Interface (GUI). If Santa can type fast, ClausControl can get his management tasks done faster than traditional GUI apps.
 
 ## Quick Start
 
