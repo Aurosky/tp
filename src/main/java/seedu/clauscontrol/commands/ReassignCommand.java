@@ -16,17 +16,25 @@ public class ReassignCommand extends Command {
 
     @Override
     public String execute() {
-        if (isFinalized) {
-            return "Cannot reassign after the lists have been finalised!";
+        try {
+            if (isFinalized) {
+                return "Cannot reassign after the lists have been finalised!";
+            }
+            if (childList == null || childList.isEmpty()) {
+                return "The child list is empty!";
+            }
+            if (childIndex < 1 || childIndex > childList.size()) {
+                return "Enter a valid child index!";
+            }
+            if (!list.equals("nice") && !list.equals("naughty")) {
+                return "Enter either nice or naughty";
+            }
+            childList.get(childIndex - 1).setListAssignment(list);
+            return childList.get(childIndex - 1).getName()
+                    + " has been reassigned to the " + list + " list!";
+        } catch (Exception e) {
+            return "Something went wrong with reassignment!";
         }
-        if (childIndex < 1 || childIndex > childList.size()) {
-            return "Enter a valid child index!";
-        }
-        if (!list.equals("nice") && !list.equals("naughty")){
-            return "Enter either nice or naughty";
-        }
-        childList.get(childIndex - 1).setListAssignment(list);
-        return childList.get(childIndex - 1).getName() + " has been reassigned to the " + list + " list!";
     }
 }
 //@@author

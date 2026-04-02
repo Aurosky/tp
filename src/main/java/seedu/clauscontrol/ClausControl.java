@@ -115,7 +115,7 @@ public class ClausControl {
                 //@@author
             } catch (IllegalValueException e) {
                 displayWithDividers(e.getMessage());
-                logger.log(Level.WARNING, "processing error");
+                logger.log(Level.INFO, "processing error");
             } catch (Exception e) {
                 return;
             }
@@ -164,8 +164,16 @@ public class ClausControl {
      *
      * @throws IllegalValueException If an incorrectly formatted command is encountered.
      */
+//    public static void main(String[] args) throws IllegalValueException {
+//        Logger.getLogger("seedu.clauscontrol").setLevel(Level.INFO);
+//        new ClausControl().run();
+//    }
     public static void main(String[] args) throws IllegalValueException {
-        Logger.getLogger("seedu.clauscontrol").setLevel(Level.WARNING);
+        Logger rootLogger = Logger.getLogger("");
+        rootLogger.setLevel(Level.OFF);
+        for (java.util.logging.Handler h : rootLogger.getHandlers()) {
+            h.setLevel(Level.OFF);
+        }
         new ClausControl().run();
     }
 }

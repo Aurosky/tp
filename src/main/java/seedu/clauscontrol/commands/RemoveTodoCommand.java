@@ -18,13 +18,20 @@ public class RemoveTodoCommand extends Command {
 
     @Override
     public String execute() {
-        if (index < 1 || index > todoList.size()) {
-            return "Enter a valid todo index!";
+        try {
+            if (todoList == null || todoList.isEmpty()) {
+                return "No todos to remove!";
+            }
+            if (index < 1 || index > todoList.size()) {
+                return "Enter a valid todo index!";
+            }
+            assert index >= 1 && index <= todoList.size() : "Index should be valid at this point";
+            Todo removed = todoList.get(index - 1);
+            todoList.remove(index - 1);
+            return "Todo removed: " + removed.getDescription();
+        } catch (Exception e) {
+            return "Something went wrong removing the todo!";
         }
-        assert index >= 1 && index <= todoList.size() : "Index should be valid at this point";
-        Todo removed = todoList.get(index - 1);
-        todoList.remove(index - 1);
-        return "Todo removed: " + removed.getDescription();
     }
 }
 //@@author

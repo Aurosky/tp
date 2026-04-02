@@ -16,14 +16,20 @@ public class TodoListCommand extends Command {
 
     @Override
     public String execute() {
-        if (todoList.isEmpty()) {
-            return "No todos added yet!";
+        try {
+            if (todoList == null || todoList.isEmpty()) {
+                return "No todos added yet!";
+            }
+            StringBuilder sb = new StringBuilder("Here are your todos:\n");
+            for (int i = 0; i < todoList.size(); i++) {
+                if (todoList.get(i) != null) {
+                    sb.append(i + 1).append(". ").append(todoList.get(i)).append("\n");
+                }
+            }
+            return sb.toString().trim();
+        } catch (Exception e) {
+            return "Something went wrong displaying todos!";
         }
-        StringBuilder sb = new StringBuilder("Here are your todos:\n");
-        for (int i = 0; i < todoList.size(); i++) {
-            sb.append(i + 1).append(". ").append(todoList.get(i)).append("\n");
-        }
-        return sb.toString().trim();
     }
 }
 //@@author

@@ -24,18 +24,23 @@ public class ActionCommand extends Command {
 
     @Override
     public String execute() {
-        //@@author GShubhan
-        if (isFinalized) {
-            return "Cannot add actions after the lists have been finalised!";
+        try {
+            if (isFinalized) {
+                return "Cannot add actions after the lists have been finalised!";
+            }
+            if (childList == null || childList.isEmpty()) {
+                return "The child list is empty!";
+            }
+            if (childIndex < 1 || childIndex > childList.size()) {
+                return INVALID_INDEX;
+            }
+            Child child = childList.get(childIndex - 1);
+            assert child != null : "Child should not be null";
+            child.addAction(action, severity);
+            return String.format(SUCCESS, child.getName(), action, severity);
+        } catch (Exception e) {
+            return "Something went wrong adding the action!";
         }
-        //@@author
-        if (childIndex < 1 || childIndex > childList.size()) {
-            return INVALID_INDEX;
-        }
-        Child child = childList.get(childIndex - 1);
-        assert child != null : "Child should not be null";
-        child.addAction(action, severity);
-        return String.format(SUCCESS, child.getName(), action, severity);
     }
 }
 
