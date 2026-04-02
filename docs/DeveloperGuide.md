@@ -510,13 +510,6 @@ ClausControl used **Gradle** for build automation.
 
 
 
-
-
-
-
-
-## Product scope
-### Target user profile
 ## Appendix A: Product Scope
 
 ### Target user profile
@@ -531,35 +524,35 @@ and a todo reminder system.
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a ... | I want to ... | So that I can ... |
-|----------|----------|---------------|-------------------|
-| `* * *`  | Santa | add a child with name, age and location | track children in the system |
-| `* * *`  | Santa | edit a child's details | correct mistakes |
-| `* * *`  | Santa | delete a child | remove entries no longer needed |
-| `* * *`  | Santa | view a child's full profile | see all details at once |
-| `* * *`  | Santa | list all children | get an overview of all children |
-| `* * *`  | Santa | find a child by name, age or location | locate a child quickly |
-| `* * *`  | Santa | record good or bad actions for a child | track child behaviour |
-| `* * *`  | Santa | view the nice list | see which children deserve gifts |
-| `* * *`  | Santa | view the naughty list | see which children do not deserve gifts |
-| `* * *`  | Santa | manually reassign a child to nice or naughty | override the automatic classification |
-| `* * *`  | Santa | finalize the lists | lock in decisions and start allocating gifts |
-| `* * *`  | Santa | assign gifts to a child | plan gift delivery |
-| `* * *`  | Santa | remove a gift from a child | correct mistakes in gift allocation |
-| `* * *`  | Santa | mark a gift as prepared | track gift preparation progress |
-| `* * *`  | Santa | mark a gift as delivered or undelivered | track gift delivery status |
-| `* * *`  | Santa | view all gifts assigned to children | keep track of gift allocation |
-| `* * *`  | Santa | add elves | manage my workforce |
-| `* * *`  | Santa | remove an elf | remove elves no longer needed |
-| `* * *`  | Santa | edit an elf's name | correct mistakes |
-| `* * *`  | Santa | assign tasks to elves | delegate work |
-| `* * *`  | Santa | remove a task from an elf | update elf workload |
-| `* * *`  | Santa | list all elves and their tasks | get an overview of my workforce |
-| `* * *`  | Santa | add todos with deadlines | keep track of things to do |
-| `* * *`  | Santa | view all todos | see everything on my list |
-| `* * *`  | Santa | remove a todo | keep my list clean |
-| `* * *`  | Santa | see upcoming reminders on startup | not miss important deadlines |
-| `* * *`  | Santa | reset the entire system | start fresh |
-| `* * *`  | Santa | data persists across sessions | not lose my work after restarting |
+|-----|----------|---------------|-------------------|
+| `* * *` | Santa | add a child with name, age and location | track children in the system |
+| `* ` | Santa | edit a child's details | correct mistakes |
+| `* * *` | Santa | delete a child | remove entries no longer needed |
+| `* * *` | Santa | view a child's full profile | see all details at once |
+| `* * *` | Santa | list all children | get an overview of all children |
+| `* *` | Santa | find a child by name, age or location | locate a child quickly |
+| `* * *` | Santa | record good or bad actions for a child | track child behaviour |
+| `* * *` | Santa | view the nice list | see which children deserve gifts |
+| `* * *` | Santa | view the naughty list | see which children do not deserve gifts |
+| `*` | Santa | manually reassign a child to nice or naughty | override the automatic classification |
+| `* *` | Santa | finalize the lists | lock in decisions and start allocating gifts |
+| `* * *` | Santa | assign gifts to a child | plan gift delivery |
+| `* * *` | Santa | remove a gift from a child | correct mistakes in gift allocation |
+| `* *` | Santa | mark a gift as prepared | track gift preparation progress |
+| `* *` | Santa | mark a gift as delivered or undelivered | track gift delivery status |
+| `* * *` | Santa | view all gifts assigned to children | keep track of gift allocation |
+| `* * *` | Santa | add elves | manage my workforce |
+| `* * *` | Santa | remove an elf | remove elves no longer needed |
+| `*` | Santa | edit an elf's name | correct mistakes |
+| `* *` | Santa | assign tasks to elves | delegate work |
+| `* *` | Santa | remove a task from an elf | update elf workload |
+| `* * *` | Santa | list all elves and their tasks | get an overview of my workforce |
+| `* * *` | Santa | add todos with deadlines | keep track of things to do |
+| `* * *` | Santa | view all todos | see everything on my list |
+| `* * *` | Santa | remove a todo | keep my list clean |
+| `* *` | Santa | see upcoming reminders on startup | not miss important deadlines |
+| `* *` | Santa | reset the entire system | start fresh |
+| `* * *` | Santa | data persists across sessions | not lose my work after restarting |
 
 ## Appendix C: Non-Functional Requirements
 
@@ -576,7 +569,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Child**: A system entity representing a gift recipient tracked by Santa.
 * **Elf**: A system entity representing a staff member or volunteer.
-* **CLI**: Command Line Interface — an interface where users type commands.
+* **CLI**: Command Line Interface - an interface where users type commands.
 * **Nice list**: The list of children with a total action score >= 0.
 * **Naughty list**: The list of children with a total action score < 0.
 * **Severity**: An integer between -5 and 5 representing how good or bad an action is.
@@ -584,7 +577,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Index**: A unique numerical identifier assigned to an item in the displayed list.
 * **Todo**: A task with a deadline added to Santa's reminder system.
 * **Mainstream OS**: Windows, Linux, Unix, MacOS.
-* **Gift state**: The current status of a gift — In Progress, Prepared or Delivered.
+* **Gift state**: The current status of a gift - In Progress, Prepared or Delivered.
 * **Task**: A piece of work assigned to an elf.
 
 ## Appendix E: Instructions for Manual Testing
