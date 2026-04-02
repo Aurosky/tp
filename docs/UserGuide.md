@@ -256,6 +256,11 @@ Examples:
 * `removetodo 1`
 
 ### Termination
+#### Reset Command: `reset`
+Resets the application (all lists) to initial state.
+
+* Format: `reset`
+
 #### Exit Command: `bye`
 Exits the application.
 
@@ -270,10 +275,6 @@ Stores data in a txt file which allows retrieval of lists upon restarting the ap
 **Q**: How do I transfer my data to another computer?
 
 **A**: All your data is automatically saved in a local `data` folder within the same directory as the `.jar` file. Simply copy the entire folder and the `.jar` file to the new computer to resume where you left off.
-
-**Q**: Sometimes the output contains messages starting with INFO: and WARNING:, is that normal?
-
-**A**: These are simply the messages for logging purposes. You can ignore them.
 
 ## Command Summary
 
@@ -299,10 +300,11 @@ Stores data in a txt file which allows retrieval of lists upon restarting the ap
 | **Add Gift**               | `gift CHILD_INDEX [g/GIFT]`                         | `gift 1 g/toy`                         |
 | **Remove gift**            | `degift CHILD_INDEX GIFT_INDEX`                     | `degift 1 2`                           |
 | **Update delivery status** | `delivery_status CHILD_INDEX GIFT_INDEX d/[status]` | `delivery_status 1 2 d/delivered`      |
-| **Mark prepared gift**    | `prepared CHILD INDEX GIFT INDEX`                   | `prepared 1 2`                         |
+| **Mark prepared gift**     | `prepared CHILD INDEX GIFT INDEX`                   | `prepared 1 2`                         |
 | **View giftlist**          | `giftlist`                                          | `giftlist`                             |
 | **Add todo**               | `todo d/DESCRIPTION by/YYYY-MM-DD`                  | `todo d/Buy gifts by/2026-12-20`       |
 | **Edit todo**              | `edittodo INDEX [d/DESCRIPTION] [by/YYYY-MM-DD]`    | `edittodo d/Wrap gifts by/2026-12-22`  |
 | **View todos**             | `todolist`                                          | `todolist`                             |
 | **Remove todo**            | `removetodo INDEX`                                  | `removetodo 1`                         |
+| **Reset Application**      | `reset`                                             | `reset`                                |
 | **Exit Application**       | `bye`                                               | `bye`                                  |
