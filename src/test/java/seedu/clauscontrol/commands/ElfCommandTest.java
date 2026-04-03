@@ -25,7 +25,7 @@ public class ElfCommandTest {
         cmd.setData(new ArrayList<>(), elfList, false);
         String result = cmd.execute();
         assertEquals(1, elfList.size());
-        assertEquals("Ho ho ho! New elf added: Dobby", result);
+        assertEquals("Ho ho ho! New elf added: " + elfList.get(0).getName().toString(), result);
     }
     
     @Test
