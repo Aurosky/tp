@@ -169,11 +169,24 @@ Example: `detask e/1 t/1`
 Displays a complete list of all children currently in the database.
 * Format: `childlist`
 * Example: `childlist`
+Display the following:
+
+Here are all children:
+1. Alice
+2. Bob
 
 #### Listing Elves: `elflist`
 Displays a complete list of all elves and their task currently in the database.
 * Format: `elflist`
 * Example: `elflist`
+
+Display the following:
+
+Here are all elves and their tasks:
+1. Bobby [No tasks assigned]
+2. Dobby
+   Tasks:
+  - 1: Buy Ccandy
 
 ### Finding Children
 
