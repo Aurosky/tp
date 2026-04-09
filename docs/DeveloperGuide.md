@@ -27,6 +27,7 @@ The Architecture Diagram given below explains the high-level design of the App.
 ![ArchitectureDiagram.png](diagrams/ArchitectureDiagram.png)
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the command delete 1.
+
 ![ArchitectureSequenceDiagram.png](diagrams/ArchitectureSequenceDiagram.png)
 
 It should be noted that the components Main and Data are representative in nature.
@@ -47,6 +48,7 @@ It handles saving and loading of  data such as:
 Data is stored in a file and loaded back into the system when the application starts.
 
 The class diagram is-
+
 ![StorageClassDiagram.png](diagrams/StorageClassDiagram.png)
 
 #### Implementation
@@ -75,6 +77,7 @@ The load() method reconstructs data from the .txt file.
 5. Adds gift to the current child
 
 Below is the sequence diagram-
+
 ![StorageSequenceDiagram.png](diagrams/StorageSequenceDiagram.png)
 
 #### Design
