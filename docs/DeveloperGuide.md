@@ -23,7 +23,8 @@ The bulk of the app’s work is done by the following five components:
 * (trivial implementation) Ui: The Ui of the App.
 
 The Architecture Diagram given below explains the high-level design of the App.
-  ![ArchitectureDiagram.png](diagrams/ArchitectureDiagram.png)
+
+![ArchitectureDiagram.png](diagrams/ArchitectureDiagram.png)
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the command delete 1.
 
@@ -114,7 +115,7 @@ The Data component houses all possible interacting entities of the application a
 - deletion
 
 #### Implementation
-![DataComponentDiagram.png](diagrams/DataComponentDiagram.png)    
+![DataComponentDiagram.png](diagrams/DataComponentDiagram.png) 
   
 The Data components interact in the following manner:
 - Child entity comprising Name and further Gift(s), implementing ReadOnlyChild and throwing IllegalValueException
@@ -173,7 +174,6 @@ The following diagram shows how user input is processed by the Parser.
 ![ParserSequenceDiagram.png](diagrams/ParserSequenceDiagram.png)
 
 #### Class Diagram
-
 ![ParserClassDiagram.png](diagrams/ParserClassDiagram.png)
 
 
@@ -542,7 +542,8 @@ Given below is a sequence diagram showing how the elf command works.
 
 Given below is a sequence diagram showing how the editelf command works.
 
-![](diagrams/EditElfSequenceDiagram.png)
+![EditElfSequenceDiagram.png](diagrams/EditElfSequenceDiagram.png)
+
 
 Given below is a sequence diagram showing how the rmelf command works.
 
@@ -847,6 +848,7 @@ Appropriate error messages are returned in case a check fails.
 
 #### UML Diagram- Sequence Diagram
 Given below is the sequence diagram
+
 ![DeGiftSequenceDiagram.png](diagrams/DeGiftSequenceDiagram.png)
 
 **Aspect:** How to implement the DeGift feature
@@ -883,6 +885,7 @@ Appropriate error messages are returned in case a check fails.
 
 #### UML Diagram- Sequence Diagram
 Given below is the sequence diagram which describes the happy path.
+
 ![DeliveryStatusSequenceDiagram.png](diagrams/DeliveryStatusSequenceDiagram.png)
 
 **Aspect:** How to implement the Delivery Status feature
@@ -915,6 +918,7 @@ The following steps occur-
 
 #### UML Diagram- Sequence Diagram
 Given below is the sequence diagram
+
 ![PrepareGiftSequencDiagram.png](diagrams/PrepareGiftSequencDiagram.png)
 
 **Aspect:** How to implement the Prepare feature
