@@ -123,7 +123,7 @@ The `Parser` class identifies commands with keywords and parameters with prefixe
 Examples of supported commands include:
 - `child n/NAME l/LOCATION a/AGE`
 - `gift CHILD_INDEX g/GIFT_NAME`
-- `action CHILD_INDEX d/DESCRIPTION s/SEVERITY`
+- `action CHILD_INDEX a/ACTION s/SEVERITY`
 - `elf n/NAME`
 - `todo d/DESCRIPTION by/DATE`
 
@@ -146,7 +146,7 @@ The following diagram shows how user input is processed by the Parser.
 
 
 ## Design & implementation
-### Child Feature (Chakraborty Shrabasti)
+### Child Feature
 
 #### Use Case 
 Below is a system-wide use case to illustrate the child profile and its associated actions.
