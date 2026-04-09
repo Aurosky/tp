@@ -31,7 +31,7 @@ The Sequence Diagram below shows how the components interact with each other for
 
 It should be noted that the components Main and Data are representative in nature.
 The Main component refers to the ClausControl.java class and the Data component refers to packages in our project representing different entities.
-They have grouped under Main and Data to reflect the architecture of the project.
+They have been grouped under Main and Data to reflect the architecture of the project.
 The sections below give more details of the major components.
 
 ## Storage Component
@@ -127,7 +127,7 @@ It implements encapsulation, immutability, and separation of concerns in terms o
 
 #### Usage
 - When the application starts, data is loaded from storage.
-- Other components interact with the Data entities.
+- Other components interact with the Data entities after command execution is initiated.
 
 ## Parser Component
 
