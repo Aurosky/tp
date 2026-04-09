@@ -1,6 +1,6 @@
 @startuml
 skinparam classAttributeIconSize 0
-
+skinparam style strictuml
 class Parser {
     - pendingCommand : Command {static}
     - GIFT_PREFIX : String {static, final}
