@@ -279,7 +279,7 @@ Examples:
 Edits a task with a deadline to Santa's todo list.
 
 * Format: `edittodo TASK_INDEX [d/DESCRIPTION] [by/YYYY-MM-DD]`
-* Deletes the task at the specified TASK_INDEX. The index refers to the index number shown in the displayed todo list. The index **must be a positive integer** 1, 2, 3, …
+* Edits the task at the specified TASK_INDEX. The index refers to the index number shown in the displayed todo list. The index **must be a positive integer** 1, 2, 3, …
 * Either one of the parameters (description/deadline) must be provided.
 
 Examples:

@@ -1,6 +1,6 @@
 FINALIZED|false
 CHILD|minnie||-1
-CHILD|ava|new york|-1
+CHILD|ava||-1
 CHILD|ava||5
 CHILD|minnie|nyc|99
 ELF|Bobby

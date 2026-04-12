@@ -267,7 +267,9 @@ public class Parser {
 
                 name = token.substring(2);
                 String err = checkValidity(name, "Name");
-                if (err != null) errors.add(err);
+                if (err != null) {
+                    errors.add(err);
+                }
 
             } else if (token.startsWith("l/")) {
                 if (location != null) {

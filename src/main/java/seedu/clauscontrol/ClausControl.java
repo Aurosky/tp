@@ -1,7 +1,6 @@
 package seedu.clauscontrol;
 
 import seedu.clauscontrol.commands.Command;
-import seedu.clauscontrol.commands.EditElfCommand;
 import seedu.clauscontrol.data.child.Child;
 import seedu.clauscontrol.data.elf.Elf;
 import seedu.clauscontrol.data.exception.IllegalValueException;
