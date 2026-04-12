@@ -1,5 +1,5 @@
-FINALIZED|true
-CHILD|Judy||-1
+FINALIZED|false
+CHILD|minnie||-1
 CHILD|ava|new york|-1
 CHILD|ava||5
 CHILD|minnie|nyc|99

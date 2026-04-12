@@ -1,6 +1,7 @@
 package seedu.clauscontrol;
 
 import seedu.clauscontrol.commands.Command;
+import seedu.clauscontrol.commands.EditElfCommand;
 import seedu.clauscontrol.data.child.Child;
 import seedu.clauscontrol.data.elf.Elf;
 import seedu.clauscontrol.data.exception.IllegalValueException;
@@ -40,7 +41,7 @@ public class ClausControl {
             "    `---'\n";
 
     public static final String DIVIDER = "_.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._.:*~*:._";
-    private static final Logger logger = Logger.getLogger("Foo");
+    private static final Logger logger = Logger.getLogger(ClausControl.class.getName());
     private final TextUi ui;
     private final Parser parser;
     private ArrayList<Child> childList;
