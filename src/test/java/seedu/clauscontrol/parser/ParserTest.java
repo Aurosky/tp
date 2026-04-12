@@ -132,7 +132,7 @@ public class ParserTest {
         IllegalValueException thrown = assertThrows(IllegalValueException.class, () -> {
             parser.parseCommand(input);
         });
-        assertEquals("You have entered duplicate parameters! Please followchild n/NAME [l/LOCATION] [a/AGE]",
+        assertEquals("You have entered duplicate parameters! Please follow child n/NAME [l/LOCATION] [a/AGE]",
                 thrown.getMessage());
     }
 

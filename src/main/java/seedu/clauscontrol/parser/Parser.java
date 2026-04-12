@@ -292,7 +292,7 @@ public class Parser {
      */
     private static void checkDuplicateParams(String param) throws IllegalValueException {
         if (param != null) {
-            throw new IllegalValueException("You have entered duplicate parameters! Please follow" +
+            throw new IllegalValueException("You have entered duplicate parameters! Please follow " +
                     "child n/NAME [l/LOCATION] [a/AGE]");
         }
     }
