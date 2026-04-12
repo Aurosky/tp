@@ -54,17 +54,25 @@ public class FindCommand extends Command {
                 break;
             
             case AGE:
+            if (query.isEmpty()) {
+                isMatch = !child.hasAge();       // ← 没有 age 的
+            } else {
                 if (child.hasAge()) {
                     isMatch = String.valueOf(child.getAge()).equals(query);
                 }
-                break;
+            }
+            break;
             
             case LOCATION:
-                if (child.hasLocation()) {
-                    assert child.getLocation() != null : "Child location should not be null if hasLocation is true";
-                    isMatch = child.getLocation().toLowerCase().contains(query);
+                if (query.isEmpty()) {
+                    isMatch = !child.hasLocation();  // ← 没有 location 的
+                } else {
+                    if (child.hasLocation()) {
+                        isMatch = child.getLocation().toLowerCase().contains(query);
+                    }
                 }
                 break;
+                
             default:
                 assert false : "Unhandled SearchType: " + type;
                 break;

@@ -646,7 +646,7 @@ public class Parser {
     //@@author
 
 
-    // @@author Kiri
+    // @@author Aurosky
     private Command prepareFind(String args) throws IllegalValueException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
@@ -655,36 +655,37 @@ public class Parser {
 
         String query = null;
         FindCommand.SearchType searchType = null;
-
+        
         if (trimmedArgs.startsWith("n/")) {
             query = trimmedArgs.substring(2).trim();
             searchType = FindCommand.SearchType.NAME;
         } else if (trimmedArgs.startsWith("a/")) {
             query = trimmedArgs.substring(2).trim();
             searchType = FindCommand.SearchType.AGE;
-            
-            try {
-                int age = Integer.parseInt(query);
-                if (age <= 0) {
-                    throw new IllegalValueException("Age must be a non-negative integer!");
+            if (!query.isEmpty()) {
+                try {
+                    int age = Integer.parseInt(query);
+                    if (age <= 0) {
+                        throw new IllegalValueException("Age must be a non-negative integer!");
+                    }
+                } catch (NumberFormatException e) {
+                    throw new IllegalValueException("Age must be a valid integer!");
                 }
-            } catch (NumberFormatException e) {
-                throw new IllegalValueException("Age must be a valid integer!");
             }
         } else if (trimmedArgs.startsWith("l/")) {
             query = trimmedArgs.substring(2).trim();
             searchType = FindCommand.SearchType.LOCATION;
         }
-
-        if (searchType == null || query == null || query.isEmpty()) {
+        
+        if (searchType == null || query == null ||
+                (query.isEmpty() && searchType == FindCommand.SearchType.NAME)) {
             throw new IllegalValueException("Invalid find format! \n" +
                     "Usage: find n/NAME or find a/AGE or find l/LOCATION");
         }
 
         return new FindCommand(query, searchType);
     }
-
-
+    
     private Command prepareElf(String args) throws IllegalValueException {
         String name = null;
 
