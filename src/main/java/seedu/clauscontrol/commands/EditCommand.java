@@ -22,6 +22,10 @@ public class EditCommand extends Command {
 
     @Override
     public String execute() {
+        if (isFinalized) {
+            return "Cannot edit child details after the lists have been finalised!";
+        }
+
         if (childIndex < 0 || childIndex >= childList.size()) {
             return "Invalid index position :(";
         }

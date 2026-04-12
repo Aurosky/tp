@@ -58,6 +58,7 @@ Edits an existing child in the system.
 * Edits the child at the specified CHILD_INDEX. The index refers to the index number shown in the displayed child list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided. 
 * Existing values will be updated to the input values.
+* Note: A child can be edited as long as the lists are not finalized.
 
 Examples:
 * `edit 1 n/Eddie Brock` Edits the name of the 1st child to be Eddie Brock.

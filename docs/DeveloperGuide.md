@@ -248,6 +248,7 @@ Given below is a sequence diagram describing the child operation.
 
 #### Implementation of `view`, `edit`, and `delete` 
 The aforementioned commands follow a near identical sequence diagram to the Child Command differing only in their execute() methods.
+It should be noted that a child cannot be edited after the finalize command, however new children can be added even after the finalize command.
 
 ### Finalize Feature
 
