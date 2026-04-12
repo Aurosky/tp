@@ -1,4 +1,8 @@
 FINALIZED|true
+CHILD|Judy||-1
+CHILD|ava|new york|-1
+CHILD|ava||5
+CHILD|minnie|nyc|99
 ELF|Bobby
 ELF|Dobby
 TASK|Buy Ccandy

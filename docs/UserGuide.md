@@ -35,6 +35,9 @@ ClausControl is a **desktop app for Santa Claus to manage children, gifts, elves
 * Extraneous parameters for commands that do not take in parameters (such as `nice`, `naughty`, etc.) will be ignored.<br>
   e.g. if the command specifies `nice 123`, it will be interpreted as `nice`.
 
+* Inputs with prefix explicitly specified must have valid parameters following the prefix.<br>
+  e.g. even though the location field is optional in the `child` command , `child n/Eddie Brock l/` is not a valid command as location is not specified.
+
 </div>
 
 ### Child Profile
