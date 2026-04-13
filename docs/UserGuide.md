@@ -64,7 +64,7 @@ Edits an existing child in the system.
 
 Examples:
 * `edit 1 n/Eddie Brock` Edits the name of the 1st child to be Eddie Brock.
-* `edit 2 l/Manhattan a/30` Edits the location and age of the 2nd child to be Manhattan and 30 respectively.
+* `edit 2 l/Manhattan a/3` Edits the location and age of the 2nd child to be Manhattan and 30 respectively.
 
 #### Viewing a child: `view`
 Displays the attributes of an existing child in the system.
