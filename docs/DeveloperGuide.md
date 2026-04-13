@@ -833,7 +833,7 @@ This feature allows Santa to remove a gift for a particular child. This is usefu
 
 #### Use Case
 **Santa removes a gift using the gift index for a particular child index.**
-**Only gifts assigned as prepared/undelivered can be degifted.**
+**Only a gift assigned as prepared/undelivered can be degifted.**
 1. degift 1 1
 The command removes the first gift of the first child.
 
@@ -876,7 +876,7 @@ updating the delivery status.
 #### Use Case
 Santa assigns the delivery status of the gift with the child index and gift index.
 **Santa can assign a gift as delivered or undelivered.**
-**Gifts are assigned undelivered by default.**
+**A gift is assigned undelivered by default.**
 1. delivery_status 1 1 d/delivered
 2. delivery_status 1 3 d/undelivered
 
@@ -913,8 +913,9 @@ Given below is the sequence diagram which describes the happy path.
 ### Prepare Gift Feature
 
 #### Overview
-This feature allows Santa to set a gift status as prepared. This is to indicate that the gift is prepared and not delivered yet.
-This allows Santa to track the progress of gifts.
+This feature allows Santa to set a gift status as prepared.
+This is to indicate that the gift is prepared and not delivered yet.
+This feature allows Santa to track the progress of gifts.
 
 #### Use Case
 **Santa can assign a gift as prepared for a gift with the corresponding child index and gift index**
@@ -956,7 +957,9 @@ Given below is the sequence diagram
 The giftlist feature displays all the gifts assigned to a child along with the child name. This allows Santa to view all the gifts in a structured format.
 
 #### Use Case
-**Santa can view the gifts for each child. Only children with gifts assigned are displayed in the list along with their gifts.**
+Santa can view the gifts for each child.
+
+**Only children with gifts assigned are displayed in the list along with their gifts.**
 1. giftlist
 
 #### Implementation
