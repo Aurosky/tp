@@ -18,8 +18,6 @@ Highlights:
 
 * Implemented `Giftcommand` to handle gift assignment.
 * Added input validation and error handling in `Parser`
-* Handled possible errors.
-
 
 #### New Feature: Remove gift feature (`degift` command)
 What it does: Allows Santa to remove a gift from the giftlist of a child.
