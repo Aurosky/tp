@@ -234,5 +234,15 @@ public class ParserTest {
                 thrown.getMessage());
     }
 
+    @Test
+    public void deleteCommand_invalidIndex_returnsError() throws Exception {
+        String input = "delete 5";
+        IllegalValueException thrown = assertThrows(IllegalValueException.class, () -> {
+            parser.parseCommand(input);
+        });
+        assertEquals("Invalid index position :(\nRefer to the child list for valid positions!",
+                thrown.getMessage());
+    }
+
     //@@author
 }

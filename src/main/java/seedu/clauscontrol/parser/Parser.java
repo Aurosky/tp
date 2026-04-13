@@ -456,6 +456,10 @@ public class Parser {
     private Command prepareDelete(String args) throws IllegalValueException {
         try {
             int childIndex = Integer.parseInt(args.trim()) - 1;
+            if (childIndex < 0 || childIndex >= childList.size()) {
+                throw new IllegalValueException("Invalid index position :(\nRefer to the " +
+                        "child list for valid positions!");
+            }
             return new DeleteCommand(childIndex);
         } catch (NumberFormatException e) {
             throw new IllegalValueException("Please use valid command format : delete [childindex]");
