@@ -19,6 +19,7 @@ import seedu.clauscontrol.commands.GiftListCommand;
 import seedu.clauscontrol.commands.NaughtyCommand;
 import seedu.clauscontrol.commands.NiceCommand;
 import seedu.clauscontrol.commands.ReassignCommand;
+import seedu.clauscontrol.commands.UnfinalizeCommand;
 import seedu.clauscontrol.commands.ResetCommand;
 import seedu.clauscontrol.commands.RmElfCommand;
 import seedu.clauscontrol.commands.TaskCommand;
@@ -30,6 +31,8 @@ import seedu.clauscontrol.commands.EditTodoCommand;
 import seedu.clauscontrol.data.child.Child;
 import seedu.clauscontrol.data.todo.Todo;
 import seedu.clauscontrol.commands.RemoveTodoCommand;
+import seedu.clauscontrol.commands.HelpCommand;
+
 
 import seedu.clauscontrol.data.exception.IllegalValueException;
 
@@ -169,6 +172,12 @@ public class Parser {
             // fall through
         case "finalise":
             return new FinalizeCommand();
+        case "unfinalize":
+            // fall through
+        case "unfinalise":
+            return new UnfinalizeCommand();
+        case "help":
+            return new HelpCommand();
         case "naughty":
             return new NaughtyCommand();
         case "reassign":
@@ -233,8 +242,8 @@ public class Parser {
         case "prepared":
             return preparePreparedAction(arguments);
         default:
-            throw new IllegalValueException(
-                    "Unknown command:( Please enter valid command");
+            throw new IllegalValueException("Unknown command:( Please enter valid command. " +
+                    "Type 'help' for a list of commands.");
         }
         //@@author
     }
@@ -553,6 +562,10 @@ public class Parser {
             int index = Integer.parseInt(args.trim().split(" ")[0]);
             String action = args.substring(aIndex + 2, sIndex).trim();
             hasNoPipe(action);
+            if (action.isEmpty()) {
+                throw new IllegalValueException("Action description cannot be empty!\n"
+                        + "Format: action CHILD_INDEX a/ACTION s/SEVERITY");
+            }
             int severity = Integer.parseInt(args.substring(sIndex + 2).trim());
 
             if (severity < -5 || severity > 5) {
