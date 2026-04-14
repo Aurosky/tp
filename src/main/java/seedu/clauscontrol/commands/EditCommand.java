@@ -30,6 +30,10 @@ public class EditCommand extends Command {
         if (childIndex < 0 || childIndex >= childList.size()) {
             return "Invalid index position :(";
         }
+        
+        if (newName == null && newLocation == null && newAge == -1) {
+            return "Nothing to edit! Provide at least one of: n/NAME, l/LOCATION, a/AGE";
+        }
 
         Child child = childList.get(childIndex);
 
@@ -52,10 +56,6 @@ public class EditCommand extends Command {
             if (newAge != -1) {
                 child.setAge(newAge);
                 finalString.append(ageChanged).append(newAge);
-            }
-            else{
-                throw new IllegalValueException("Please use correct format: edit CHILD_INDEX " +
-                        "[n/name] [l/location] [a/action]");
             }
         } catch (IllegalValueException e) {
             return e.getMessage();

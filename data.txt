@@ -1,6 +1,8 @@
 FINALIZED|false
-CHILD|ava||-1|-1
-CHILD|ava||5|-1
+CHILDLIST|ccc
+CHILDLIST|ava
+CHILD|ccc||11|null
+CHILD|ava||5|null
 ELF|Bobby
 ELF|Dobby
 TASK|Buy Ccandy
